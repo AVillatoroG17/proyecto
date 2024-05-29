@@ -22,4 +22,6 @@ public class Doctor {
         System.out.println("Ingrese el numero del telefono del doctor");
         this.telefono = in.nextInt();
     }
+    //verificar que las funciones de agregar esten bien conectadas con la base de datos
+
 }
