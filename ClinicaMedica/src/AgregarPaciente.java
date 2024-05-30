@@ -28,5 +28,6 @@ public class AgregarPaciente {
     }
 
     //agregar conexiones aqui
+// te amo wicho
 
 }

@@ -6,8 +6,7 @@ public class Citas_medicas {
         peticionUsuario usuario = new peticionUsuario();
 
         usuario.pedirUsuario();
-
-
+//HOLA
     }
 
 }
