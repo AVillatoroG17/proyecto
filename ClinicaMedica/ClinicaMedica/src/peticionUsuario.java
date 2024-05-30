@@ -40,9 +40,9 @@ public class peticionUsuario {
                 this.Administrador = in.nextLine();
                 break;
 
+
         }
 
-        //preparara para el main
     }
 
 }

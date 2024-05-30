@@ -7,7 +7,7 @@ public class Main {
 
         usuario.pedirUsuario();
 
-        
+
     }
 
 }
