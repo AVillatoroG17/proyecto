@@ -6,8 +6,7 @@ public class Main {
         peticionUsuario usuario = new peticionUsuario();
 
         usuario.pedirUsuario();
-
-
+//HOLA
     }
 
 }
