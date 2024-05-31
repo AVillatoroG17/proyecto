@@ -4,9 +4,9 @@ public class aplicacion {
         int opcion;
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Indique la operacion que desea realizar");
-        System.out.println("1. Agregar Cita");
-        System.out.println("2. Agregar Paciente");
+        System.out.println("Indique la Opcion que desea realizar");
+        System.out.println("1. Opciones Cita");
+        System.out.println("2. Opciones Paciente");
         opcion = in.nextInt();
 
         switch (opcion){
@@ -19,6 +19,7 @@ public class aplicacion {
                 OpcionesPaciente paciente1 = new OpcionesPaciente();
                 paciente1.opcionePaciente();
                 break;
+                //
         }
 
     }
