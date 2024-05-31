@@ -7,7 +7,7 @@ public class Conexion {
 
     public Conexion() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinica", "root", "KBTRHM3LLGQ1771a.");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinica", "root", "SOMOSPROSSIUUU");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new SQLException("Error al conectar con la base de datos :( " + e.getMessage());
