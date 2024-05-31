@@ -9,6 +9,7 @@ public class aplicacion {
         System.out.println("2. Opciones Paciente");
         opcion = in.nextInt();
 
+
         switch (opcion){
             case 1:
                 OpcionesCita cita1 = new OpcionesCita();
@@ -22,5 +23,7 @@ public class aplicacion {
                 //
         }
 
+
     }
 }
+

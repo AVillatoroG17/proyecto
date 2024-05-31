@@ -18,7 +18,7 @@ public class OpcionesCita {
         if (opcion == 1) {
             try {
                 Conexion conexion = new Conexion();
-                String sql = "INSERT INTO citas (id_cita, nombre_paciente, DPI, fecha_De_reservacion, motivo, nombre_doctor, id_medico, fecha_de_cita) VALUES (?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO citas (id_cita, nombre_paciente, DPI, fecha_De_reservacion, motivo, nombre_doctor, id_medico, fecha_de_cita, id_paciente) VALUES (?,?,?,?,?,?,?,?,?)";
 
                 try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
 
@@ -69,7 +69,7 @@ public class OpcionesCita {
                 st = conexion.connection.createStatement();
                 rs = st.executeQuery("SELECT * FROM citas");
                 while (rs.next()) {
-                    System.out.println(rs.getInt("id_cita") + " " + rs.getString("Nombre_paciente") + " " + rs.getInt("DPI") + " " + rs.getString("Fecha_de_reservacion") + " " + rs.getString("motivo") + " " + rs.getString("nombre_doctor") + " " + rs.getInt("id_medico") + " " + rs.getString("fecha_de_cita")+ rs.getInt("id_paciente"));
+                    System.out.println(rs.getInt("id_cita") + " " + rs.getString("Nombre_paciente") + " " + rs.getInt("DPI") + " " + rs.getString("Fecha_de_reservacion") + " " + rs.getString("motivo") + " " + rs.getString("nombre_doctor") + " " + rs.getInt("id_medico") + " " + rs.getString("fecha_de_cita") + " " + rs.getInt("id_paciente"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -117,4 +117,9 @@ public class OpcionesCita {
             }
         }
     }
+
 }
+
+
+
+
