@@ -7,9 +7,9 @@ public class Conexion {
 
     public Conexion() throws SQLException {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/clinica", "root", "SOMOSPROSSIUUU");
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/clinica", "root", "");
 
-            connection = DriverManager.getConnection("", "ingresa el usuario //creo que es root", "//ingresa la contraseña que elegista al instalar el MySQL");
+            //connection = DriverManager.getConnection("", "ingresa el usuario //creo que es root", "//ingresa la contraseña que elegista al instalar el MySQL");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -19,3 +19,5 @@ public class Conexion {
 
 
 }
+
+// Conexion exitosa
