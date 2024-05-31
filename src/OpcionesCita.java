@@ -31,6 +31,7 @@ public class OpcionesCita {
                     String nombre_doctor = JOptionPane.showInputDialog("Ingrese el nombre del doctor que atendera al paciente");
                     int id_medico = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del medico que atendera al paciente"));
                     String fecha_de_cita = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente vendra a la clinica");
+                    int id_paciente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del paciente"));
 
                     cita.setId_cita(id_cita);
                     cita.setNombre_paciente(nombre_paciente);
@@ -40,6 +41,7 @@ public class OpcionesCita {
                     cita.setNombre_doctor(nombre_doctor);
                     cita.setId_medico(id_medico);
                     cita.setFecha_de_cita(fecha_de_cita);
+                    cita.setId_paciente(id_paciente);
 
                     preparedStatement.setInt(1, cita.getId_cita());
                     preparedStatement.setString(2, cita.getNombre_paciente());
@@ -49,6 +51,7 @@ public class OpcionesCita {
                     preparedStatement.setString(6, nombre_doctor);
                     preparedStatement.setInt(7, id_medico);
                     preparedStatement.setString(8, fecha_de_cita);
+                    preparedStatement.setInt(9, id_paciente);
                     int rowsAffected = preparedStatement.executeUpdate();
                     System.out.println("Filas afectadas: " + rowsAffected);
                 }
@@ -66,7 +69,7 @@ public class OpcionesCita {
                 st = conexion.connection.createStatement();
                 rs = st.executeQuery("SELECT * FROM citas");
                 while (rs.next()) {
-                    System.out.println(rs.getInt("id_cita") + " " + rs.getString("Nombre_paciente") + " " + rs.getInt("DPI") + " " + rs.getString("Fecha_de_reservacion") + " " + rs.getString("motivo") + " " + rs.getString("nombre_doctor") + " " + rs.getInt("id_medico") + " " + rs.getString("fecha_de_cita"));
+                    System.out.println(rs.getInt("id_cita") + " " + rs.getString("Nombre_paciente") + " " + rs.getInt("DPI") + " " + rs.getString("Fecha_de_reservacion") + " " + rs.getString("motivo") + " " + rs.getString("nombre_doctor") + " " + rs.getInt("id_medico") + " " + rs.getString("fecha_de_cita")+ rs.getInt("id_paciente"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
