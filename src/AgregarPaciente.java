@@ -28,6 +28,7 @@ public class AgregarPaciente {
         
  	//ayudaaaa 
 	//correcciones 
+	//esta es la buena
 
     }
 
