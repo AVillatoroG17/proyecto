@@ -20,7 +20,7 @@ public class aplicacion {
                 OpcionesPaciente paciente1 = new OpcionesPaciente();
                 paciente1.opcionePaciente();
                 break;
-                //
+
         }
 
 

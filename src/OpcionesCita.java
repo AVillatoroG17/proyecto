@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class OpcionesCita {
 
     public void opcionesCitasMedicas() {
-        System.out.println("¿Qué acción desea realizar?");
+        System.out.println("\n¿Qué acción desea realizar?");
         Scanner in = new Scanner(System.in);
         System.out.println("\n1. Agregar cita");
         System.out.println("2. Ver citas");
@@ -23,7 +23,7 @@ public class OpcionesCita {
                 try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
 
                     Cita cita = new Cita();
-                    int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Este campo se completa automaticamente"));
+                    int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita"));
                     String nombre_paciente = JOptionPane.showInputDialog("Ingrese el nombre del paciente");
                     int DPI = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DPI del paciente"));
                     String fecha_De_reservacion = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente relizo la cita");
