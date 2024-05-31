@@ -71,77 +71,41 @@ public class OpcionesCita {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (opcion == 3) {
+        } else if (opcion == 3) {
             try {
                 Conexion conexion = new Conexion();
                 int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea eliminar"));
-
                 String sql = "DELETE FROM citas WHERE id_cita = ?";
                 try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
                     preparedStatement.setInt(1, id_cita);
                     int rowsAffected = preparedStatement.executeUpdate();
-                    System.out.println("Cita eliminada" + rowsAffected);
+                    if (rowsAffected > 0) {
+                        System.out.println("La cita ha sido eliminada satisfactoriamente");
+                    } else {
+                        System.out.println("No se ha podido encontrar una cita correspondiente al id ingresado :(");
+                    }
                 }
-
                 conexion.connection.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (opcion == 4) {
+        } else if (opcion == 4) {
             try {
                 Conexion conexion = new Conexion();
                 int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea actualizar"));
+                String nuevaFechaCita = JOptionPane.showInputDialog("Ingrese la nueva fecha para la cita");
 
-                String nombre_paciente = JOptionPane.showInputDialog("Ingrese el nuevo nombre del paciente (deje en blanco para no cambiar)");
-                String DPIString = JOptionPane.showInputDialog("Ingrese el nuevo DPI del paciente (deje en blanco para no cambiar)");
-                String fecha_De_reservacion = JOptionPane.showInputDialog("Ingrese la nueva fecha de reservación (deje en blanco para no cambiar)");
-                String motivo = JOptionPane.showInputDialog("Ingrese el nuevo motivo (deje en blanco para no cambiar)");
-                String nombre_doctor = JOptionPane.showInputDialog("Ingrese el nuevo nombre del doctor (deje en blanco para no cambiar)");
-                String id_medicoString = JOptionPane.showInputDialog("Ingrese el nuevo ID del médico (deje en blanco para no cambiar)");
-                String fecha_de_cita = JOptionPane.showInputDialog("Ingrese la nueva fecha de la cita (deje en blanco para no cambiar)");
+                String sql = "UPDATE citas SET fecha_de_cita = ? WHERE id_cita = ?";
+                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, nuevaFechaCita);
+                    preparedStatement.setInt(2, id_cita);
+                    int filasAfectadas = preparedStatement.executeUpdate();
 
-                StringBuilder sql = new StringBuilder("UPDATE citas SET ");
-                boolean needsComma = false;
-
-                if (!nombre_paciente.isEmpty()) {
-                    sql.append("nombre_paciente = '").append(nombre_paciente).append("'");
-                    needsComma = true;
-                }
-                if (!DPIString.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("DPI = ").append(DPIString);
-                    needsComma = true;
-                }
-                if (!fecha_De_reservacion.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("fecha_De_reservacion = '").append(fecha_De_reservacion).append("'");
-                    needsComma = true;
-                }
-                if (!motivo.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("motivo = '").append(motivo).append("'");
-                    needsComma = true;
-                }
-                if (!nombre_doctor.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("nombre_doctor = '").append(nombre_doctor).append("'");
-                    needsComma = true;
-                }
-                if (!id_medicoString.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("id_medico = ").append(id_medicoString);
-                    needsComma = true;
-                }
-                if (!fecha_de_cita.isEmpty()) {
-                    if (needsComma) sql.append(", ");
-                    sql.append("fecha_de_cita = '").append(fecha_de_cita).append("'");
-                }
-
-                sql.append(" WHERE id_cita = ").append(id_cita);
-
-                try (Statement st = conexion.connection.createStatement()) {
-                    int rowsAffected = st.executeUpdate(sql.toString());
-                    System.out.println("Filas afectadas: " + rowsAffected);
+                    if (filasAfectadas > 0) {
+                        System.out.println("Fecha de cita actualizada correctamente.");
+                    } else {
+                        System.out.println("No se encontró ninguna cita que corresponda al id ingresado");
+                    }
                 }
 
                 conexion.connection.close();
