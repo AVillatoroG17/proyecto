@@ -11,6 +11,8 @@ public class OpcionesCita {
         Scanner in = new Scanner(System.in);
         System.out.println("\n1. Agregar cita");
         System.out.println("2. Ver citas");
+        System.out.println("3. Borrar una cita");
+        System.out.println("4. Actualizar una cita");
         int opcion = in.nextInt();
 
         if (opcion == 1) {
@@ -69,7 +71,52 @@ public class OpcionesCita {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (opcion == 3) {
+            try {
+                Conexion conexion = new Conexion();
+                int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea eliminar"));
+                String sql = "DELETE FROM citas WHERE id_cita = ?";
+                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
+                    preparedStatement.setInt(1, id_cita);
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    if (rowsAffected > 0) {
+                        System.out.println("La cita ha sido eliminada satisfactoriamente");
+                    } else {
+                        System.out.println("No se ha podido encontrar una cita correspondiente al id ingresado :(");
+                    }
+                }
+                conexion.connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (opcion == 4) {
+            try {
+                Conexion conexion = new Conexion();
+                int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea actualizar"));
+                String nuevaFechaCita = JOptionPane.showInputDialog("Ingrese la nueva fecha para la cita");
+
+                String sql = "UPDATE citas SET fecha_de_cita = ? WHERE id_cita = ?";
+                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, nuevaFechaCita);
+                    preparedStatement.setInt(2, id_cita);
+                    int filasAfectadas = preparedStatement.executeUpdate();
+
+                    if (filasAfectadas > 0) {
+                        System.out.println("Fecha de cita actualizada correctamente.");
+                    } else {
+                        System.out.println("No se encontró ninguna cita que corresponda al id ingresado");
+                    }
+                }
+
+                conexion.connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
 }
-//ola
+
+
+
+

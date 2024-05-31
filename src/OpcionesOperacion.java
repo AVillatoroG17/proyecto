@@ -1,14 +1,14 @@
 import java.util.Scanner;
-public class aplicacion {
-    public static void main(String[] args) {
-        int opcion;
-        Scanner in = new Scanner(System.in);
+public class OpcionesOperacion {
+    Scanner in = new Scanner(System.in);
+    int opcion;
+
+    public void opcionesOperacion(){
 
         System.out.println("Indique la operacion que desea realizar");
         System.out.println("1. Agregar Cita");
-        System.out.println("2. Agregar Paciente");
+        System.out.println("1. Agregar Paciente");
         opcion = in.nextInt();
-
 
         switch (opcion){
             case 1:
@@ -22,7 +22,6 @@ public class aplicacion {
                 break;
         }
 
-
     }
-}
 
+}

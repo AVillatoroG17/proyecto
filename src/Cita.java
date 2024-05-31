@@ -66,7 +66,5 @@ public class Cita {
     public void setId_cita(int id_cita) {
         this.id_cita = id_cita;
 
-//sindi mi amoooor
-//wicho mi bebe
     }
 }

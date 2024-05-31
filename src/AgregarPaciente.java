@@ -26,9 +26,7 @@ public class AgregarPaciente {
         System.out.println("Ingrese la fecha donde se le atendera");
         this.fecha_de_cita = in.nextLine();
         
- 	//ayudaaaa 
-	//correcciones 
-	//esta es la buena
+
 
     }
 
