@@ -9,7 +9,7 @@ public class Conexion {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/clinica", "root", "");
 
-            //connection = DriverManager.getConnection("", "ingresa el usuario //creo que es root", "//ingresa la contraseña que elegista al instalar el MySQL");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
