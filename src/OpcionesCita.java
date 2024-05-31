@@ -11,6 +11,8 @@ public class OpcionesCita {
         Scanner in = new Scanner(System.in);
         System.out.println("\n1. Agregar cita");
         System.out.println("2. Ver citas");
+        System.out.println("3. Borrar una cita");
+        System.out.println("4. Actualizar una cita");
         int opcion = in.nextInt();
 
         if (opcion == 1) {
@@ -78,14 +80,14 @@ public class OpcionesCita {
                 try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
                     preparedStatement.setInt(1, id_cita);
                     int rowsAffected = preparedStatement.executeUpdate();
-                    System.out.println("Filas afectadas: " + rowsAffected);
+                    System.out.println("Cita eliminada" + rowsAffected);
                 }
 
                 conexion.connection.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (opcion == 4) {  // Update option
+        }else if (opcion == 4) {
             try {
                 Conexion conexion = new Conexion();
                 int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea actualizar"));

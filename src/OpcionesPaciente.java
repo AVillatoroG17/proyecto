@@ -11,6 +11,8 @@ public class OpcionesPaciente {
         Scanner in = new Scanner(System.in);
         System.out.println("\n1. Agregar paciente");
         System.out.println("2. ver pacientes");
+        System.out.println("3. Eliminar a un paciente");
+        System.out.println("4. Actualizar datos de un paciente");
         int opcion = in.nextInt();
 
 
@@ -99,14 +101,14 @@ public class OpcionesPaciente {
                 try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
                     preparedStatement.setInt(1, id_cita);
                     int rowsAffected = preparedStatement.executeUpdate();
-                    System.out.println("Filas afectadas: " + rowsAffected);
+                    System.out.println("Paciente eliminado" + rowsAffected);
                 }
 
                 conexion.connection.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (opcion == 4) {  // Update option
+        }else if (opcion == 4) {
             try {
                 Conexion conexion = new Conexion();
                 int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea actualizar"));
