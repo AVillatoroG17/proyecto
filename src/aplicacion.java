@@ -8,8 +8,11 @@ public class aplicacion {
 //        usuario.pedirUsuario();/*
   //  }
 
-        OpcionesCita cita1 = new OpcionesCita();
-        cita1.opcionesCitasMedicas();
+     //   OpcionesCita cita1 = new OpcionesCita();
+     //   cita1.opcionesCitasMedicas();
+
+        OpcionesPaciente paciente1 = new OpcionesPaciente();
+        paciente1.opcionePaciente();
 
     }
 }
