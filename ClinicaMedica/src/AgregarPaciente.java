@@ -4,7 +4,7 @@ public class AgregarPaciente {
     private String nombre, apellido,fecha_de_reserva, nombre_medico, apellido_medico,  motivo, fecha_de_cita;
     private int id_paciente, id_medico, DPI;
 
-    public void agregarPaciente(){
+    public void agregarPaciente() {
         System.out.println("Ingrese el nombre del paciente");
         this.nombre = in.nextLine();
         System.out.println("Ingrese el apellido del paciente");
@@ -29,5 +29,6 @@ public class AgregarPaciente {
 
     //agregar conexiones aqui
 // te amo wicho
+// quiero hacer un cambio
 
 }
