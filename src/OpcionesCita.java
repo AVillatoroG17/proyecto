@@ -6,81 +6,69 @@ import java.util.Scanner;
 
 public class OpcionesCita {
 
-
-    public void opcionesCitasMedicas(){
-        System.out.println("¿ Que accion desea realizar ?");
+    public void opcionesCitasMedicas() {
+        System.out.println("¿Qué acción desea realizar?");
         Scanner in = new Scanner(System.in);
-        System.out.println("\n1. Agragar cita");
+        System.out.println("\n1. Agregar cita");
         System.out.println("2. Ver citas");
-      //  System.out.println("3. Eliminar cita");
         int opcion = in.nextInt();
 
-        if(opcion == 1) {
+        if (opcion == 1) {
             try {
                 Conexion conexion = new Conexion();
-                String sql = "INSERT INTO cita (nombre_paciente, DPI, fecha_De_reservacion, motivo, nombre_doctor, id_medico, fecha_de_cita) VALUES (?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO citas (id_cita, nombre_paciente, DPI, fecha_De_reservacion, motivo, nombre_doctor, id_medico, fecha_de_cita) VALUES (?,?,?,?,?,?,?,?)";
 
-                PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql);
+                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
 
-                Cita cita = new Cita();
-                int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Este campo se completa automaticamente"));
-                String nombre_paciente = JOptionPane.showInputDialog("Ingrese el nombre del paciente");
-                int DPI = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DPI del paciente"));
-                String fecha_De_reservacion = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente relizo la cita");
-                String motivo = JOptionPane.showInputDialog("Ingrese el motivo por el cual el paciente realizo la cita");
-                String nombre_doctor = JOptionPane.showInputDialog("Ingrese el nombre del doctor que atendera al paciente");
-                int id_medico = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del medico que atendera al paciente"));
-                String fecha_de_cita = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente vendra a la clinica");
+                    Cita cita = new Cita();
+                    int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Este campo se completa automaticamente"));
+                    String nombre_paciente = JOptionPane.showInputDialog("Ingrese el nombre del paciente");
+                    int DPI = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DPI del paciente"));
+                    String fecha_De_reservacion = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente relizo la cita");
+                    String motivo = JOptionPane.showInputDialog("Ingrese el motivo por el cual el paciente realizo la cita");
+                    String nombre_doctor = JOptionPane.showInputDialog("Ingrese el nombre del doctor que atendera al paciente");
+                    int id_medico = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del medico que atendera al paciente"));
+                    String fecha_de_cita = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente vendra a la clinica");
 
-                cita.setId_cita(id_cita);
-                cita.setNombre_paciente(nombre_paciente);
-                cita.setDPI(DPI);
-                cita.setFecha_de_reservacion(fecha_De_reservacion);
-                cita.setMotivo(motivo);
-                cita.setNombre_doctor(nombre_doctor);
-                cita.setId_medico(id_medico);
-                cita.setFecha_de_cita(fecha_de_cita);
+                    cita.setId_cita(id_cita);
+                    cita.setNombre_paciente(nombre_paciente);
+                    cita.setDPI(DPI);
+                    cita.setFecha_de_reservacion(fecha_De_reservacion);
+                    cita.setMotivo(motivo);
+                    cita.setNombre_doctor(nombre_doctor);
+                    cita.setId_medico(id_medico);
+                    cita.setFecha_de_cita(fecha_de_cita);
 
-                preparedStatement.setInt(1, cita.getId_cita());
-                preparedStatement.setString(2, cita.getNombre_paciente());
-                preparedStatement.setInt(3, cita.getDPI());
-                preparedStatement.setString(4, cita.getFecha_de_reservacion());
-                preparedStatement.setString(5, motivo);
-                preparedStatement.setString(6, nombre_doctor);
-                preparedStatement.setInt(7, id_medico);
-                preparedStatement.setString(8, fecha_de_cita);
-
-                int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println("rows" + rowsAffected);
-
-                if (rowsAffected == 1)
-                    JOptionPane.showConfirmDialog(null, "Datos insertados con exito");
+                    preparedStatement.setInt(1, cita.getId_cita());
+                    preparedStatement.setString(2, cita.getNombre_paciente());
+                    preparedStatement.setInt(3, cita.getDPI());
+                    preparedStatement.setString(4, cita.getFecha_de_reservacion());
+                    preparedStatement.setString(5, motivo);
+                    preparedStatement.setString(6, nombre_doctor);
+                    preparedStatement.setInt(7, id_medico);
+                    preparedStatement.setString(8, fecha_de_cita);
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    System.out.println("Filas afectadas: " + rowsAffected);
+                }
 
                 conexion.connection.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
+        } else if (opcion == 2) {
+            try {
+                Conexion conexion = new Conexion();
+                Statement st;
+                ResultSet rs;
 
-            else if (opcion == 2){
-                try {
-                    Conexion conexion = new Conexion();
-                    Statement st;
-                    ResultSet rs;
-
-                    st = conexion.connection.createStatement();
-                    rs = st.executeQuery("Select * from cita");
-                    while (rs.next()) {
-                         System.out.println((rs.getInt("id_cita")) + rs.getString("Nombre_paciente") + rs.getInt("DPI") + rs.getString("Fecha_de_reservacion")+ rs.getString("motivo")+ rs.getString("nombre_doctor") +rs.getInt("id_medico")+ rs.getString("fecha_de_cita"));
-                    }
-
-                }catch (Exception e){
-
+                st = conexion.connection.createStatement();
+                rs = st.executeQuery("SELECT * FROM citas");
+                while (rs.next()) {
+                    System.out.println(rs.getInt("id_cita") + " " + rs.getString("Nombre_paciente") + " " + rs.getInt("DPI") + " " + rs.getString("Fecha_de_reservacion") + " " + rs.getString("motivo") + " " + rs.getString("nombre_doctor") + " " + rs.getInt("id_medico") + " " + rs.getString("fecha_de_cita"));
                 }
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
-
     }
-
-
+}
