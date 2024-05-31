@@ -5,11 +5,15 @@ public class aplicacion {
 
       //  peticionUsuario usuario = new peticionUsuario();
 
-//        usuario.pedirUsuario();/*
+//       usuario.pedirUsuario();/*
   //  }
 
         OpcionesCita cita1 = new OpcionesCita();
-        cita1.opcionesCitasMedicas();
+           cita1.opcionesCitasMedicas();
+
+       // OpcionesPaciente paciente1 = new OpcionesPaciente();
+        // paciente1.opcionePaciente();
 
     }
 }
+
