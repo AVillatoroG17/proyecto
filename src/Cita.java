@@ -1,7 +1,7 @@
 public class Cita {
 
     private String nombre_paciente, fecha_de_reservacion, motivo, nombre_doctor, fecha_de_cita;
-    private int DPI, id_medico;
+    private int DPI, id_medico, id_cita;
 
     public String getNombre_paciente() {
         return nombre_paciente;
@@ -57,5 +57,13 @@ public class Cita {
 
     public void setFecha_de_cita(String fecha_de_cita) {
         this.fecha_de_cita = fecha_de_cita;
+    }
+
+    public int getId_cita() {
+        return id_cita;
+    }
+
+    public void setId_cita(int id_cita) {
+        this.id_cita = id_cita;
     }
 }

@@ -23,6 +23,7 @@ public class OpcionesCita {
                 PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql);
 
                 Cita cita = new Cita();
+                int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Este campo se completa automaticamente"));
                 String nombre_paciente = JOptionPane.showInputDialog("Ingrese el nombre del paciente");
                 int DPI = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DPI del paciente"));
                 String fecha_De_reservacion = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente relizo la cita");
@@ -31,6 +32,7 @@ public class OpcionesCita {
                 int id_medico = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el id del medico que atendera al paciente"));
                 String fecha_de_cita = JOptionPane.showInputDialog("Ingrese la fecha en la cual el paciente vendra a la clinica");
 
+                cita.setId_cita(id_cita);
                 cita.setNombre_paciente(nombre_paciente);
                 cita.setDPI(DPI);
                 cita.setFecha_de_reservacion(fecha_De_reservacion);
@@ -39,13 +41,14 @@ public class OpcionesCita {
                 cita.setId_medico(id_medico);
                 cita.setFecha_de_cita(fecha_de_cita);
 
-                preparedStatement.setString(1, cita.getNombre_paciente());
-                preparedStatement.setInt(2, cita.getDPI());
-                preparedStatement.setString(3, cita.getFecha_de_reservacion());
-                preparedStatement.setString(4, motivo);
-                preparedStatement.setString(5, nombre_doctor);
-                preparedStatement.setInt(6, id_medico);
-                preparedStatement.setString(7, fecha_de_cita);
+                preparedStatement.setInt(1, cita.getId_cita());
+                preparedStatement.setString(2, cita.getNombre_paciente());
+                preparedStatement.setInt(3, cita.getDPI());
+                preparedStatement.setString(4, cita.getFecha_de_reservacion());
+                preparedStatement.setString(5, motivo);
+                preparedStatement.setString(6, nombre_doctor);
+                preparedStatement.setInt(7, id_medico);
+                preparedStatement.setString(8, fecha_de_cita);
 
                 int rowsAffected = preparedStatement.executeUpdate();
                 System.out.println("rows" + rowsAffected);
@@ -67,7 +70,7 @@ public class OpcionesCita {
                     st = conexion.connection.createStatement();
                     rs = st.executeQuery("Select * from cita");
                     while (rs.next()) {
-                         System.out.println(rs.getString("Nombre_paciente") + rs.getInt("DPI") + rs.getString("Fecha_de_reservacion")+ rs.getString("motivo")+ rs.getString("nombre_doctor") +rs.getInt("id_medico")+ rs.getString("fecha_de_cita"));
+                         System.out.println((rs.getInt("id_cita")) + rs.getString("Nombre_paciente") + rs.getInt("DPI") + rs.getString("Fecha_de_reservacion")+ rs.getString("motivo")+ rs.getString("nombre_doctor") +rs.getInt("id_medico")+ rs.getString("fecha_de_cita"));
                     }
 
                 }catch (Exception e){
