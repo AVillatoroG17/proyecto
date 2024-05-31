@@ -27,6 +27,6 @@ public class AgregarPaciente {
         this.fecha_de_cita = in.nextLine();
     }
 
-    //hello
+    //me quiero mnorir
 
 }
