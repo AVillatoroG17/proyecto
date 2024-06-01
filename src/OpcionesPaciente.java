@@ -5,14 +5,25 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class OpcionesPaciente {
+    // Colores
+    String negro = "\033[30m", rojo = "\033[31m", verde = "\033[32m", amarillo = "\033[33m", azul = "\033[34m", magenta = "\033[35m", celeste = "\033[36m", blanco = "\033[37m";
+    String fRojo = "\033[41m", fVerde = "\033[42m", fAmarillo = "\033[43m", fAzul = "\033[44m", fMagenta = "\033[45m", fCeleste = "\033[46m", fGris = "\033[47m";
+    String borrar = "\u001B[0m"; //borrar
 
     public void opcionePaciente() {
-        System.out.println("¿ Que accion desea realizar ?");
+        System.out.println(fGris + negro +" ***************************************************************** " + borrar);
+        System.out.println(fGris + negro +" *  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL * " + borrar);
+        System.out.println(fGris + negro +" *++++++++++++++++++++++++++++++++++++++++++********************** " + borrar);
+        System.out.println("");
+        System.out.println(fMagenta + negro +" ¿ Que accion desea realizar ?  " + borrar);
         Scanner in = new Scanner(System.in);
-        System.out.println("\n1. Agregar paciente");
-        System.out.println("2. ver pacientes");
-        System.out.println("3. Eliminar a un paciente");
-        System.out.println("4. Actualizar datos de un paciente");
+        System.out.println("");
+        System.out.println(fVerde + negro +  " 1. Agregar paciente  " + borrar);
+        System.out.println(fAmarillo + negro +  " 2. ver pacientes  " + borrar);
+        System.out.println(fRojo + negro +  "3. Eliminar a un paciente" + borrar);
+        System.out.println(fAzul + negro +  "4. Actualizar datos de un paciente" + borrar) ;
+        System.out.println("");
+
         int opcion = in.nextInt();
 
 
@@ -58,7 +69,7 @@ public class OpcionesPaciente {
                 preparedStatement.setInt(10, paciente.getId_medico());
 
                 int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println("Filas afectadas: " + rowsAffected);
+                System.out.println(fVerde + negro +"Filas afectadas: " + rowsAffected + borrar);
 
                 if (rowsAffected == 1)
                     JOptionPane.showMessageDialog(null, "Datos insertados con éxito");
@@ -103,9 +114,9 @@ public class OpcionesPaciente {
                     int filasAfectadas = preparedStatement.executeUpdate();
 
                     if (filasAfectadas > 0) {
-                        System.out.println("Paciente eliminado correctamente.");
+                        System.out.println(fRojo + negro + "Paciente eliminado correctamente." + borrar);
                     } else {
-                        System.out.println("No se encontró ningún paciente con el ID proporcionado.");
+                        System.out.println(fRojo + negro + "No se encontró ningún paciente con el ID proporcionado." + borrar);
                     }
                 }
 
