@@ -12,17 +12,17 @@ public class OpcionesCita {
 
     public void opcionesCitasMedicas() {
         System.out.println("");
-        System.out.println(fGris + negro +"***********************" + borrar);
-        System.out.println(fGris + negro +"*  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL *" + borrar);
-        System.out.println(fGris + negro +"***********************" + borrar);
+        System.out.println(fGris + negro + "***********************" + borrar);
+        System.out.println(fGris + negro + "*  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL *" + borrar);
+        System.out.println(fGris + negro + "***********************" + borrar);
         System.out.println("");
-        System.out.println(fMagenta + negro +" ¿ Que accion desea realizar ?  " + borrar);
+        System.out.println(fMagenta + negro + " ¿ Que accion desea realizar ?  " + borrar);
         Scanner in = new Scanner(System.in);
         System.out.println("");
-        System.out.println(fVerde + negro +  " 1. Agregar Cita  " + borrar);
-        System.out.println(fAmarillo + negro +  " 2. Ver Cita  " + borrar);
-        System.out.println(fRojo + negro +  "3. Eliminar Cita" + borrar);
-        System.out.println(fAzul + negro +  "4. Actualizar datos de una Cita" + borrar) ;
+        System.out.println(fVerde + negro + " 1. Agregar Cita  " + borrar);
+        System.out.println(fAmarillo + negro + " 2. Ver Cita  " + borrar);
+        System.out.println(fRojo + negro + "3. Eliminar Cita" + borrar);
+        System.out.println(fAzul + negro + "4. Actualizar datos de una Cita" + borrar);
         int opcion = in.nextInt();
 
         if (opcion == 1) {
@@ -106,19 +106,60 @@ public class OpcionesCita {
             try {
                 Conexion conexion = new Conexion();
                 int id_cita = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la cita que desea actualizar"));
-                String nuevaFechaCita = JOptionPane.showInputDialog("Ingrese la nueva fecha para la cita");
+                int opcionActualizacion = Integer.parseInt(JOptionPane.showInputDialog("Seleccione la opción de actualización:\n1. Cambiar fecha\n2. Cambiar DPI\n3. Cambiar nombre de la persona en la cita"));
 
-                String sql = "UPDATE citas SET fecha_de_cita = ? WHERE id_cita = ?";
-                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
-                    preparedStatement.setString(1, nuevaFechaCita);
-                    preparedStatement.setInt(2, id_cita);
-                    int filasAfectadas = preparedStatement.executeUpdate();
+                switch (opcionActualizacion) {
+                    case 1:
+                        String nuevaFechaCita = JOptionPane.showInputDialog("Ingrese la nueva fecha para la cita");
+                        String sqlFecha = "UPDATE citas SET fecha_de_cita = ? WHERE id_cita = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlFecha)) {
+                            preparedStatement.setString(1, nuevaFechaCita);
+                            preparedStatement.setInt(2, id_cita);
+                            int filasAfectadas = preparedStatement.executeUpdate();
 
-                    if (filasAfectadas > 0) {
-                        System.out.println("Fecha de cita actualizada correctamente.");
-                    } else {
-                        System.out.println("No se encontró ninguna cita que corresponda al id ingresado");
-                    }
+                            if (filasAfectadas > 0) {
+                                System.out.println("Fecha de cita actualizada correctamente.");
+                            } else {
+                                System.out.println("No se encontró ninguna cita que corresponda al ID ingresado.");
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        String nuevoDPI = JOptionPane.showInputDialog("Ingrese el nuevo DPI para la cita");
+                        String sqlDPI = "UPDATE citas SET dpi = ? WHERE id_cita = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlDPI)) {
+                            preparedStatement.setString(1, nuevoDPI);
+                            preparedStatement.setInt(2, id_cita);
+                            int filasAfectadas = preparedStatement.executeUpdate();
+
+                            if (filasAfectadas > 0) {
+                                System.out.println("DPI de la cita actualizado correctamente.");
+                            } else {
+                                System.out.println("No se encontró ninguna cita que corresponda al ID ingresado.");
+                            }
+                        }
+                        break;
+
+                    case 3:
+                        String nuevoNombrePersona = JOptionPane.showInputDialog("Ingrese el nuevo nombre de la persona en la cita");
+                        String sqlNombrePersona = "UPDATE citas SET nombre_persona = ? WHERE id_cita = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlNombrePersona)) {
+                            preparedStatement.setString(1, nuevoNombrePersona);
+                            preparedStatement.setInt(2, id_cita);
+                            int filasAfectadas = preparedStatement.executeUpdate();
+
+                            if (filasAfectadas > 0) {
+                                System.out.println("Nombre de la persona en la cita actualizado correctamente.");
+                            } else {
+                                System.out.println("No se encontró ninguna cita que corresponda al ID ingresado.");
+                            }
+                        }
+                        break;
+
+                    default:
+                        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                        break;
                 }
 
                 conexion.connection.close();
@@ -127,9 +168,7 @@ public class OpcionesCita {
             }
         }
     }
-
 }
-
 
 
 
