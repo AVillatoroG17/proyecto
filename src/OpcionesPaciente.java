@@ -11,17 +11,17 @@ public class OpcionesPaciente {
     String borrar = "\u001B[0m"; //borrar
 
     public void opcionePaciente() {
-        System.out.println(fGris + negro +" ***************************************************************** " + borrar);
-        System.out.println(fGris + negro +" *  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL * " + borrar);
-        System.out.println(fGris + negro +" *++++++++++++++++++++++++++++++++++++++++++********************** " + borrar);
+        System.out.println(fGris + negro + " ***************************************************************** " + borrar);
+        System.out.println(fGris + negro + " *  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL * " + borrar);
+        System.out.println(fGris + negro + " *++++++++++++++++++++++++++++++++++++++++++********************** " + borrar);
         System.out.println("");
-        System.out.println(fMagenta + negro +" ¿ Que accion desea realizar ?  " + borrar);
+        System.out.println(fMagenta + negro + " ¿ Que accion desea realizar ?  " + borrar);
         Scanner in = new Scanner(System.in);
         System.out.println("");
-        System.out.println(fVerde + negro +  " 1. Agregar paciente  " + borrar);
-        System.out.println(fAmarillo + negro +  " 2. ver pacientes  " + borrar);
-        System.out.println(fRojo + negro +  "3. Eliminar a un paciente" + borrar);
-        System.out.println(fAzul + negro +  "4. Actualizar datos de un paciente" + borrar) ;
+        System.out.println(fVerde + negro + " 1. Agregar paciente  " + borrar);
+        System.out.println(fAmarillo + negro + " 2. ver pacientes  " + borrar);
+        System.out.println(fRojo + negro + "3. Eliminar a un paciente" + borrar);
+        System.out.println(fAzul + negro + "4. Actualizar datos de un paciente" + borrar);
         System.out.println("");
 
         int opcion = in.nextInt();
@@ -69,7 +69,7 @@ public class OpcionesPaciente {
                 preparedStatement.setInt(10, paciente.getId_medico());
 
                 int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println(fVerde + negro +"Filas afectadas: " + rowsAffected + borrar);
+                System.out.println(fVerde + negro + "Filas afectadas: " + rowsAffected + borrar);
 
                 if (rowsAffected == 1)
                     JOptionPane.showMessageDialog(null, "Datos insertados con éxito");
@@ -129,19 +129,60 @@ public class OpcionesPaciente {
             try {
                 Conexion conexion = new Conexion();
                 int id_paciente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del paciente que desea actualizar"));
-                String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre para el paciente");
+                int opcionActualizacion = Integer.parseInt(JOptionPane.showInputDialog("Seleccione la opción de actualización:\n1. Cambiar nombre\n2. Cambiar DPI\n3. Cambiar teléfono"));
 
-                String sql = "UPDATE paciente SET nombre_paciente = ? WHERE id_paciente = ?";
-                try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sql)) {
-                    preparedStatement.setString(1, nuevoNombre);
-                    preparedStatement.setInt(2, id_paciente);
-                    int filasAfectadas = preparedStatement.executeUpdate();
+                switch (opcionActualizacion) {
+                    case 1:
+                        String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre para el paciente");
+                        String sqlNombre = "UPDATE paciente SET nombre_paciente = ? WHERE id_paciente = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlNombre)) {
+                            preparedStatement.setString(1, nuevoNombre);
+                            preparedStatement.setInt(2, id_paciente);
+                            int filasAfectadas = preparedStatement.executeUpdate();
 
-                    if (filasAfectadas > 0) {
-                        System.out.println("Nombre del paciente actualizado correctamente.");
-                    } else {
-                        System.out.println("No se encontró ningún paciente con el ID proporcionado.");
-                    }
+                            if (filasAfectadas > 0) {
+                                System.out.println("Nombre del paciente actualizado correctamente.");
+                            } else {
+                                System.out.println("No se encontró ningún paciente con el ID proporcionado.");
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        String nuevoDPI = JOptionPane.showInputDialog("Ingrese el nuevo DPI para el paciente");
+                        String sqlDPI = "UPDATE paciente SET dpi = ? WHERE id_paciente = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlDPI)) {
+                            preparedStatement.setString(1, nuevoDPI);
+                            preparedStatement.setInt(2, id_paciente);
+                            int filasAfectadas = preparedStatement.executeUpdate();
+
+                            if (filasAfectadas > 0) {
+                                System.out.println("DPI del paciente actualizado correctamente.");
+                            } else {
+                                System.out.println("No se encontró ningún paciente con el ID proporcionado.");
+                            }
+                        }
+                        break;
+
+                    case 3:
+                        String nuevoTelefono = JOptionPane.showInputDialog("Ingrese el nuevo teléfono para el paciente");
+                        String sqlTelefono = "UPDATE paciente SET telefono = ? WHERE id_paciente = ?";
+                        try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlTelefono)) {
+                            preparedStatement.setString(1, nuevoTelefono);
+                            preparedStatement.setInt(2, id_paciente);
+                            int filasAfectadas = preparedStatement.executeUpdate();
+
+                            if (filasAfectadas > 0) {
+                                System.out.println("Teléfono del paciente actualizado correctamente.");
+                            } else {
+                                System.out.println("No se encontró ningún paciente con el ID proporcionado.");
+                            }
+                        }
+                        break;
+
+                    default:
+                        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                        break;
                 }
 
                 conexion.connection.close();
@@ -150,7 +191,7 @@ public class OpcionesPaciente {
             }
         }
     }
-}
 
+    }
 
 
