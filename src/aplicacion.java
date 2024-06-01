@@ -6,7 +6,7 @@ public class aplicacion {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel label1 = new JLabel(" +++++++++++++++++++++++++++++++++++++++++++++++++ ");
+        JLabel label1 = new JLabel(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ");
         label1.setOpaque(true);
         label1.setBackground(Color.RED);
         label1.setForeground(Color.BLACK);
@@ -16,7 +16,7 @@ public class aplicacion {
         label2.setBackground(Color.RED);
         label2.setForeground(Color.BLACK);
 
-        JLabel label3 = new JLabel(" +++++++++++++++++++++++++++++++++++++++++++++++++ ");
+        JLabel label3 = new JLabel(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ");
         label3.setOpaque(true);
         label3.setBackground(Color.RED);
         label3.setForeground(Color.BLACK);

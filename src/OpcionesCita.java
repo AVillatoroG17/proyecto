@@ -22,7 +22,7 @@ public class OpcionesCita {
         addButton.setForeground(Color.GREEN);
 
         JButton viewButton = new JButton("Ver Citas");
-        viewButton.setForeground(Color.YELLOW);
+        viewButton.setForeground(Color.BLACK);
 
         JButton deleteButton = new JButton("Eliminar Cita");
         deleteButton.setForeground(Color.RED);

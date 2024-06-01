@@ -11,7 +11,7 @@ public class OpcionesPaciente {
 
     public void opcionePaciente() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(6, 1));
+        panel.setLayout(new GridLayout(5, 1));
         panel.setBackground(Color.GRAY);
 
         JLabel label = new JLabel("Bienvenido al Sistema de Pacientes del Hostital INGENIERIA TOTAL");
@@ -22,7 +22,7 @@ public class OpcionesPaciente {
         addButton.setForeground(Color.GREEN);
 
         JButton viewButton = new JButton("Ver pacientes");
-        viewButton.setForeground(Color.YELLOW);
+        viewButton.setForeground(Color.BLACK);
 
         JButton deleteButton = new JButton("Eliminar paciente");
         deleteButton.setForeground(Color.RED);
