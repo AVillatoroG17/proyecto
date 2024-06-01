@@ -5,14 +5,24 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class OpcionesCita {
+    // Colores
+    String negro = "\033[30m", rojo = "\033[31m", verde = "\033[32m", amarillo = "\033[33m", azul = "\033[34m", magenta = "\033[35m", celeste = "\033[36m", blanco = "\033[37m";
+    String fRojo = "\033[41m", fVerde = "\033[42m", fAmarillo = "\033[43m", fAzul = "\033[44m", fMagenta = "\033[45m", fCeleste = "\033[46m", fGris = "\033[47m";
+    String borrar = "\u001B[0m"; //borrar
 
     public void opcionesCitasMedicas() {
-        System.out.println("\n¿Qué acción desea realizar?");
+        System.out.println("");
+        System.out.println(fGris + negro +"***********************" + borrar);
+        System.out.println(fGris + negro +"*  Bienvenido a al Sistema de Citas de Clinica INGENIERIA TOTAL *" + borrar);
+        System.out.println(fGris + negro +"***********************" + borrar);
+        System.out.println("");
+        System.out.println(fMagenta + negro +" ¿ Que accion desea realizar ?  " + borrar);
         Scanner in = new Scanner(System.in);
-        System.out.println("\n1. Agregar cita");
-        System.out.println("2. Ver citas");
-        System.out.println("3. Borrar una cita");
-        System.out.println("4. Actualizar una cita");
+        System.out.println("");
+        System.out.println(fVerde + negro +  " 1. Agregar Cita  " + borrar);
+        System.out.println(fAmarillo + negro +  " 2. Ver Cita  " + borrar);
+        System.out.println(fRojo + negro +  "3. Eliminar Cita" + borrar);
+        System.out.println(fAzul + negro +  "4. Actualizar datos de una Cita" + borrar) ;
         int opcion = in.nextInt();
 
         if (opcion == 1) {
