@@ -14,7 +14,7 @@ public class OpcionesPaciente {
         panel.setLayout(new GridLayout(6, 1));
         panel.setBackground(Color.GRAY);
 
-        JLabel label = new JLabel("Bienvenido al Sistema de Citas de Clínica INGENIERIA TOTAL");
+        JLabel label = new JLabel("Bienvenido al Sistema de Pacientes del Hostital INGENIERIA TOTAL");
         label.setForeground(Color.BLACK);
         panel.add(label);
 
