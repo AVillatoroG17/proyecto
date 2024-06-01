@@ -143,7 +143,7 @@ public class OpcionesCita {
 
                     case 3:
                         String nuevoNombrePersona = JOptionPane.showInputDialog("Ingrese el nuevo nombre de la persona en la cita");
-                        String sqlNombrePersona = "UPDATE citas SET nombre_persona = ? WHERE id_cita = ?";
+                        String sqlNombrePersona = "UPDATE citas SET nombre_paciente = ? WHERE id_cita = ?";
                         try (PreparedStatement preparedStatement = conexion.connection.prepareStatement(sqlNombrePersona)) {
                             preparedStatement.setString(1, nuevoNombrePersona);
                             preparedStatement.setInt(2, id_cita);
@@ -169,6 +169,5 @@ public class OpcionesCita {
         }
     }
 }
-
 
 
